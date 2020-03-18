@@ -1,4 +1,6 @@
 # Docker Swarm Spark Cluster Raspberry Pi 4 ARM
+![](Architecture.png)
+
 Deploy an [Apache Spark](https://spark.apache.org) cluster in standalone mode on a [Raspberry Pi 4](https://www.raspberrypi.org) using [Docker Swarm](https://docs.docker.com/engine/swarm/swarm-tutorial/create-swarm/).
 
 1. Install [Docker](https://docs.docker.com) on all machines.
