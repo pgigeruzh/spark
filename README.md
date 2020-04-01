@@ -18,7 +18,7 @@ Deploy an [Apache Spark](https://spark.apache.org) cluster in standalone mode on
 
 3. Install [GlusterFS]( https://www.gluster.org) (separate instructions down below)
 
-   (This step is optional but advisable if you want to analyze data)
+   (This step is optional and creates a shared volumes accross all nodes (similar to Hadoop/HDFS). This is useful when the data is stored directly on the Raspberry Pi.)
 
 4. Create an overlay network
 
@@ -48,10 +48,11 @@ Deploy an [Apache Spark](https://spark.apache.org) cluster in standalone mode on
 
    ```bash
    # run spark workers
-   docker service create --replicas 4 --name sparkworker --network spark --publish 8081:8081 --mount source=gfs,destination=/gfs pgigeruzh/spark:arm bin/spark-class org.apache.spark.deploy.worker.Worker spark://sparkmaster:7077
+   docker service create --replicas 4 --replicas-max-per-node 1 --name sparkworker --network spark --publish 8081:8081 --mount source=gfs,destination=/gfs pgigeruzh/spark:arm bin/spark-class org.apache.spark.deploy.worker.Worker spark://sparkmaster:7077
    ```
 
    "--replicas 4" deploys four workers  
+   "--replicas-max-per-node 1" allows only one worker per node  
 
 7. Run [JupyterLab](https://jupyter.org)
 
