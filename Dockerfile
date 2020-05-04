@@ -6,7 +6,8 @@ RUN apt-get update \
  && apt-get install -y python3 python3-setuptools \
  && ln -s /usr/bin/python3 /usr/bin/python \
  && apt-get install -y python3-pip \
- && apt-get install -y openjdk-8-jre
+ && apt-get install -y openjdk-8-jre \
+ && apt-get install -y docker.io
 
 # Install Spark
 ENV SPARK_VERSION 2.4.5
